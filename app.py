@@ -18,6 +18,7 @@ import os
 # Load Google Vision API credentials
 CREDENTIALS = r"C:\Users\lenovo\Downloads\automatic-bill-analyser-72c84106d14b.json"
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = CREDENTIALS
+client = vision.ImageAnnotatorClient()
 
 # Initialize Gemini model
 genai.configure(api_key="AIzaSyAqxTFd6eXeUU-627CDl9dUXyB-MLQk3yU")  # Replace with your Gemini API key
@@ -25,7 +26,6 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 
 # Function to extract text from an image using Google Vision API
 def extract_text_from_image(image_data):
-    client = vision.ImageAnnotatorClient()
     image = vision.Image(content=image_data)
     response = client.text_detection(image=image)
 
